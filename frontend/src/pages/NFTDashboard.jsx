@@ -302,7 +302,7 @@ export const NFTDashboard = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <NFTCard title="The Future wave #23" creator="@spaceman" />
               <NFTCard title="Astro World #244" creator="@astrowave" />
               <NFTCard title="Cyber Art #234" creator="@cybermask" />
