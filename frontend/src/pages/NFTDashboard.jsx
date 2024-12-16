@@ -11,6 +11,8 @@ import game from "../images/game.png";
 import photo from "../images/photo.png";
 import music from "../images/music.png";
 import sport from "../images/sport.png";
+import Chart from "../components/Chart";
+import cardbg1 from "../images/card-quick-bg.png";
 export const NFTDashboard = () => {
   return (
     <div className="bg-[#1C1E2A] text-white min-h-screen p-4 font-anta">
@@ -63,27 +65,27 @@ export const NFTDashboard = () => {
               </p>
             </div>
             <div className="mb-6 gap-6 flex ">
-              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg">
+              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg cursor-pointer">
                 <img src={popular} alt="" className="w-9 h-9" />
                 <p className="text-[#A3B2C8]">Popular</p>
               </div>
-              <div className="bg-[#262C3A] flex items-center space-x-2 w-fit p-3 rounded-lg">
+              <div className="bg-[#262C3A] flex items-center space-x-2 w-fit p-3 rounded-lg cursor-pointer">
                 <img src={art} alt="" className="w-9 h-9" />
                 <p className="text-[#A3B2C8]">Arts</p>
               </div>
-              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg">
+              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg cursor-pointer">
                 <img src={game} alt="" className="w-9 h-9" />
                 <p className="text-[#A3B2C8]">Games</p>
               </div>
-              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg">
+              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg cursor-pointer">
                 <img src={music} alt="" className="w-9 h-9" />
                 <p className="text-[#A3B2C8]">Music</p>
               </div>
-              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg">
+              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg cursor-pointer">
                 <img src={sport} alt="" className="w-9 h-9" />
                 <p className="text-[#A3B2C8]">Sports</p>
               </div>
-              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg">
+              <div className="bg-[#262C3A] flex items-center space-x-3 w-fit p-3 rounded-lg cursor-pointer">
                 <img src={photo} alt="" className="w-9 h-9" />
                 <p className="text-[#A3B2C8]">Photography</p>
               </div>
@@ -109,33 +111,101 @@ export const NFTDashboard = () => {
               />
             </div>
           </div>
+          <div>
+            <div className="flex justify-between items-center">
+              <p className="text-[24px] font-bold my-4 font-tektur">
+                Recommended
+              </p>
+              <p className="text-[16px] mb-4 text-[#0997FF] cursor-pointer">
+                See all
+              </p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-6">
+              <NFTCard
+                title="The Future wave #23"
+                creator="@spaceman"
+                timeRemaining="12h 14m 16s"
+                bid="0.24 BTC"
+              />
+              <NFTCard
+                title="Astro World #244"
+                creator="@astrowave"
+                timeRemaining="12h 14m 16s"
+                bid="0.24 BTC"
+              />
+              <NFTCard
+                title="Cyber Art #234"
+                creator="@cybermask"
+                timeRemaining="7h 09m 20s"
+                bid="0.24 BTC"
+              />
+            </div>
+          </div>
         </section>
 
         {/* Right section */}
-        <section className="col-span-5">
+        <section className="col-span-5 bg-[#262C3A]">
           {/* Chart Summary */}
           <div className=" rounded-lg p-4 mb-6">
             <h2 className="text-[24px] font-bold mb-4 font-tektur">
               Chart Summary
             </h2>
-            <div className="h-40 bg-gray-700 rounded-lg">
+            <div className=" bg-gray-700 rounded-lg">
               {/* Placeholder for the chart */}
+              <Chart />
             </div>
           </div>
 
           {/* Quick Actions */}
           <div className="rounded-lg p-4 mb-6">
-            <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <QuickActionCard title="Create New Task" />
-              <QuickActionCard title="Explore Insights" />
+            <h2 className="text-[24px] font-bold mb-4 font-tektur">
+              Quick Actions
+            </h2>
+            <div className="grid grid-cols-3 gap-4">
+              <QuickActionCard
+                title="Create Task"
+                emoji="📝"
+                bgColor="bg-purple-600"
+                bgImage={cardbg1}
+                redirectLink="/create-task"
+              />
+              <QuickActionCard
+                title="Upload Files"
+                emoji="📁"
+                bgColor="bg-blue-500"
+                bgImage="https://via.placeholder.com/300x200.png?text=Upload+BG"
+                redirectLink="/upload"
+              />
+              {/* <QuickActionCard
+                title="Settings"
+                emoji="⚙️"
+                bgColor="bg-green-500"
+                bgImage="https://via.placeholder.com/300x200.png?text=Settings+BG"
+                redirectLink="/settings"
+              /> */}
+              <QuickActionCard
+                title="Notifications"
+                emoji="🔔"
+                bgColor="bg-yellow-500"
+                bgImage="https://via.placeholder.com/300x200.png?text=Notifications+BG"
+                redirectLink="/notifications"
+              />
             </div>
           </div>
 
           {/* Trending Insights */}
           <div className=" rounded-lg p-4">
-            <h2 className="text-lg font-semibold mb-4">Trending Insights</h2>
-            <div className="grid grid-cols-1 gap-4">
+            <h2 className="text-[24px] font-bold mb-4 font-tektur">
+              Trending Insights
+            </h2>
+            <div className="grid grid-cols-2 gap-4">
+              <NFTCard
+                title="The Future wave #23"
+                creator="@spaceman"
+                timeRemaining="12h 14m 16s"
+                bid="0.24 BTC"
+              />
               <NFTCard
                 title="The Future wave #23"
                 creator="@spaceman"
