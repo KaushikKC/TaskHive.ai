@@ -1,5 +1,5 @@
 import React from "react";
-import nftimage1 from "../images/nftimage2.png";
+import nftimage1 from "../images/nftimage1.png";
 
 const NFTCard = ({ flightName, price, rationale }) => {
   return (

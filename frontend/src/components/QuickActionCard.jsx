@@ -1,67 +1,81 @@
 import React, { useState } from "react";
 import ReactCardFlip from "react-card-flip";
 
-function QuickActionCard() {
+const QuickActionCard = ({ title, emoji, bgColor, bgImage, onGoClick }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const title = "Upload Files";
-  const emoji = "📁";
-  const bgColor = "bg-blue-500";
-  const bgImage = "https://via.placeholder.com/300x200.png?text=Upload+BG";
-  const redirectLink = "/upload";
+
+  // Handle flip on hover
+  const handleMouseEnter = () => {
+    setIsFlipped(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTimeout(() => {
+      setIsFlipped(false);
+    }, 1000); // Delay to automatically flip back
+  };
+
+  // Handle flip on click
+  const handleClick = () => {
+    setIsFlipped(true);
+    setTimeout(() => {
+      setIsFlipped(false); // Automatically flip back after 2 seconds
+    }, 2000);
+  };
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
       {/* Front Side */}
       <div
-        className={`h-[200px] rounded-xl shadow-lg flex flex-col items-center justify-center text-white text-center font-bold text-xl relative cursor-pointer overflow-hidden`}
-        onMouseEnter={() => setIsFlipped(true)} // Flip on hover
-        onMouseLeave={() => setIsFlipped(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+        className={`h-[160px] relative flex items-center justify-center rounded-lg text-white cursor-pointer ${bgColor}`}
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center"
         }}
       >
-        {/* Semi-Transparent Background Overlay */}
-        <div className={`absolute inset-0 ${bgColor} opacity-80 rounded-xl`} />
-
-        {/* Transparent SVG Pattern */}
-        {/* <div
-          className="absolute inset-0 bg-white opacity-10 rounded-xl"
-          style={{
-            maskImage: `url("https://www.svgrepo.com/show/373768/pattern.svg")`,
-            WebkitMaskImage: `url("https://www.svgrepo.com/show/373768/pattern.svg")`,
-            maskSize: "cover",
-            WebkitMaskSize: "cover"
-          }}
-        /> */}
-
-        {/* Emoji and Title */}
-        <div className="text-5xl mb-2 relative z-10">
-          {emoji}
-        </div>
-        <div className="relative z-10">
-          {title}
+        <div className="flex flex-col items-center justify-center space-y-2 text-center">
+          <span className="text-4xl">
+            {emoji}
+          </span>
+          <h3 className="text-lg font-semibold">
+            {title}
+          </h3>
         </div>
       </div>
 
       {/* Back Side */}
       <div
-        className="h-[200px] bg-gray-900 rounded-xl flex items-center justify-center shadow-lg relative cursor-pointer"
-        onMouseEnter={() => setIsFlipped(true)}
-        onMouseLeave={() => setIsFlipped(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+        className={`h-[160px] relative p-4 rounded-lg text-white cursor-pointer ${bgColor}`}
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "cover"
+        }}
       >
-        <a
-          href={redirectLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white text-gray-800 px-6 py-3 rounded-lg shadow-md font-medium hover:bg-blue-600 hover:text-white transition-all duration-300"
-        >
-          Go
-        </a>
+        <div className="flex flex-col items-center justify-center h-full space-y-4">
+          {/* <h3 className="text-lg font-semibold">Details</h3>
+          <p className="text-sm">Flips back automatically</p> */}
+          <div className="mt-2">
+            <button
+              onClick={e => {
+                e.stopPropagation();
+                onGoClick();
+              }}
+              className="bg-white text-gray-800 px-6 py-3 rounded-lg shadow-md font-medium hover:bg-blue-600 hover:text-white transition-all duration-300"
+            >
+              Go
+            </button>
+          </div>
+        </div>
       </div>
     </ReactCardFlip>
   );
-}
+};
 
 export default QuickActionCard;

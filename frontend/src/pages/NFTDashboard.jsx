@@ -13,7 +13,21 @@ import music from "../images/music.png";
 import sport from "../images/sport.png";
 import Chart from "../components/Chart";
 import cardbg1 from "../images/card-quick-bg.png";
+import cardbg2 from "../images/card-quick-bg1.png";
+import cardbg3 from "../images/card-quick-bg3.png";
+import AIPromptPopup from "../components/AIPromptPopup";
 export const NFTDashboard = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  // Handler to show the popup
+  const handleShowPopup = () => {
+    setShowPopup(true);
+  };
+
+  // Handler to close the popup
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
   return (
     <div className="bg-[#1C1E2A] text-white min-h-screen p-4 font-anta">
       <header className="flex justify-between items-center pt-4 px-6">
@@ -147,7 +161,7 @@ export const NFTDashboard = () => {
         {/* Right section */}
         <section className="col-span-5 bg-[#262C3A]">
           {/* Chart Summary */}
-          <div className=" rounded-lg p-4 mb-6">
+          <div className=" rounded-lg p-4 ">
             <h2 className="text-[24px] font-bold mb-4 font-tektur">
               Chart Summary
             </h2>
@@ -158,23 +172,24 @@ export const NFTDashboard = () => {
           </div>
 
           {/* Quick Actions */}
-          <div className="rounded-lg p-4 mb-6">
+          <div className="rounded-lg p-4 ">
             <h2 className="text-[24px] font-bold mb-4 font-tektur">
               Quick Actions
             </h2>
             <div className="grid grid-cols-3 gap-4">
               <QuickActionCard
-                title="Create Task"
-                emoji="📝"
-                bgColor="bg-purple-600"
+                title="Create New Task"
+                emoji="️✍️"
+                bgColor="bg-[#694797]"
                 bgImage={cardbg1}
-                redirectLink="/create-task"
-              />
+                onGoClick={handleShowPopup} // Open popup on Go button click
+              />{" "}
+              {showPopup && <AIPromptPopup onClose={handleClosePopup} />}
               <QuickActionCard
-                title="Upload Files"
-                emoji="📁"
-                bgColor="bg-blue-500"
-                bgImage="https://via.placeholder.com/300x200.png?text=Upload+BG"
+                title="NFT Marketplace"
+                emoji="💰"
+                bgColor="bg-[#0997FF]"
+                bgImage={cardbg2}
                 redirectLink="/upload"
               />
               {/* <QuickActionCard
@@ -185,10 +200,10 @@ export const NFTDashboard = () => {
                 redirectLink="/settings"
               /> */}
               <QuickActionCard
-                title="Notifications"
-                emoji="🔔"
-                bgColor="bg-yellow-500"
-                bgImage="https://via.placeholder.com/300x200.png?text=Notifications+BG"
+                title="Explore Insights"
+                emoji="🌐"
+                bgColor="bg-[#525151]"
+                bgImage={cardbg3}
                 redirectLink="/notifications"
               />
             </div>
