@@ -4,8 +4,8 @@ import nftimage1 from "../images/nftimage1.png";
 const NFTCard = ({ flightName, price, rationale }) => {
   return (
     <div
-      className="relative group w-80 mx-auto rounded-[30px] overflow-hidden bg-gradient-to-br from-[#1A1C2E] to-[#292B3F] shadow-lg hover:shadow-2xl transition-transform duration-500 transform hover:-translate-y-2 hover:border-4 hover:border-[#0997FF]"
-      style={{ height: "390px" }}
+      className="relative group w-70 mx-auto rounded-[30px] overflow-hidden bg-gradient-to-br from-[#1A1C2E] to-[#292B3F] shadow-lg hover:shadow-2xl transition-transform duration-500 transform hover:-translate-y-2 hover:border-4 hover:border-[#0997FF]"
+      style={{ height: "350px" }}
     >
       {/* NFT Image Section */}
       <div className="relative">

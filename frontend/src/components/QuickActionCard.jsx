@@ -30,7 +30,7 @@ const QuickActionCard = ({ title, emoji, bgColor, bgImage, onGoClick }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}
-        className={`h-[160px] relative flex items-center justify-center rounded-lg text-white cursor-pointer ${bgColor}`}
+        className={`h-[120px] w-[200px] relative flex items-center justify-center rounded-lg text-white cursor-pointer ${bgColor}`}
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
@@ -52,7 +52,7 @@ const QuickActionCard = ({ title, emoji, bgColor, bgImage, onGoClick }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}
-        className={`h-[160px] relative p-4 rounded-lg text-white cursor-pointer ${bgColor}`}
+        className={`h-[120px] w-[200px] relative p-4 rounded-lg text-white cursor-pointer ${bgColor}`}
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover"

@@ -65,7 +65,7 @@ const Chart = () => {
   }, []);
 
   return (
-    <div className="w-full h-[350px] max-w-4xl mx-auto p-4 bg-black rounded-lg shadow-lg h-fit">
+    <div className="w-full h-[300px] max-w-4xl mx-auto p-4 bg-black rounded-lg shadow-lg">
       <Line
         ref={chartRef}
         data={chartData}
