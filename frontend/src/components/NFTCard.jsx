@@ -22,7 +22,7 @@ const NFTCard = ({ flightName, price, rationale }) => {
               {flightName || "Flight to Mars"}
             </h3>
             <p className="text-sm text-gray-300 mt-1">
-              Price: {price || "0.75 ETH"}
+              Price: {price || "0.75 SOL"}
             </p>
           </div>
 
@@ -43,7 +43,7 @@ const NFTCard = ({ flightName, price, rationale }) => {
           {flightName || "Flight to Mars"}
         </h3>
         <p className="text-sm text-gray-300 mt-1">
-          Price: {price || "0.75 ETH"}
+          Price: {price || "0.75 SOL"}
         </p>
       </div>
     </div>

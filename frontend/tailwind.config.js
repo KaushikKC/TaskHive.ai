@@ -11,6 +11,7 @@ module.exports = {
         anta: ['Anta', 'sans-serif'],
       },
     },
+    
   },
   plugins: [],
 };

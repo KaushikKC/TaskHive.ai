@@ -22,7 +22,7 @@ const Chart = () => {
       gradient1.addColorStop(0, "rgba(255, 99, 132, 0.6)");
       gradient1.addColorStop(1, "rgba(255, 99, 132, 0)");
 
-      // Gradient for ETH
+      // Gradient for SOL
       const gradient2 = chart.createLinearGradient(0, 0, 0, 400);
       gradient2.addColorStop(0, "rgba(54, 162, 235, 0.6)");
       gradient2.addColorStop(1, "rgba(54, 162, 235, 0)");

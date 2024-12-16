@@ -1,11 +1,10 @@
 import React from "react";
+import { RiRobot2Line } from "react-icons/ri";
 import { SiSolana } from "react-icons/si";
 
 function AIPromptPopup({ onClose }) {
   return (
-    <div
-      className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md transition-opacity duration-300`}
-    >
+    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
       {/* Popup Content */}
       <div className="bg-gradient-to-br from-gray-800 to-gray-700 text-white rounded-2xl shadow-lg p-6 w-[500px] relative">
         {/* Close Button */}
@@ -47,8 +46,9 @@ function AIPromptPopup({ onClose }) {
 
         {/* Search Button */}
         <div className="flex justify-center mt-6">
-          <button className="bg-white text-[#0997FF] hover:bg-[#0997FF] px-4 py-2 rounded-lg hover:text-white">
-            Search
+          <button className="flex bg-white gap-2 text-[#0997FF] hover:bg-[#0997FF] px-4 py-2 rounded-lg hover:text-white">
+            <RiRobot2Line className="w-6 h-6" />
+            Ask AI
           </button>
         </div>
       </div>
