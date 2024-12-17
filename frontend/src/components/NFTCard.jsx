@@ -1,5 +1,6 @@
 import React from "react";
 import nftimage1 from "../images/nftimage1.png";
+import { Link } from "react-router-dom";
 
 const NFTCard = ({ flightName, price, rationale }) => {
   return (
@@ -31,9 +32,12 @@ const NFTCard = ({ flightName, price, rationale }) => {
               "This NFT aligns with your gaming preference and fits your budget."}
           </p>
 
-          <button className="mt-4 w-full py-2 rounded-full bg-[#0997FF] text-white font-bold shadow-md hover:from-[#0883D0] hover:to-[#64CDB8] transition-all duration-300">
+          <Link
+            to="/details"
+            className="mt-4 w-full py-2 rounded-full bg-[#0997FF] text-white font-bold shadow-md hover:from-[#0883D0] hover:to-[#64CDB8] transition-all duration-300 flex justify-center items-center"
+          >
             Select
-          </button>
+          </Link>
         </div>
       </div>
 

@@ -1,7 +1,4 @@
-// Import necessary libraries
-import React, { useState } from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useState, useRef } from "react";
 import NFTCard from "../components/NFTCard";
 import QuickActionCard from "../components/QuickActionCard";
 import { CiSearch } from "react-icons/ci";
@@ -18,35 +15,48 @@ import cardbg3 from "../images/card-quick-bg3.png";
 import AIPromptPopup from "../components/AIPromptPopup";
 import Header from "../components/Header";
 import ProcessingScreen from "../components/ProcessingScreen";
-export const NFTDashboard = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
+import { useNavigate } from "react-router-dom";
+// import SliderWrapper from "../utils/SliderWrapper";
 
-  const handleTaskCreation = () => {
-    setIsProcessing(true);
-    // Simulate task processing
+export const NFTDashboard = () => {
+  const [showPopup, setShowPopup] = useState(false); // Popup visibility
+  const [isProcessing, setIsProcessing] = useState(false); // Processing state
+  const navigate = useNavigate();
+  // const sliderRef = useRef(null);
+
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 4,
+  //   slidesToScroll: 1
+  // };
+
+  // Function to start processing
+  const handleProcessing = () => {
+    setShowPopup(false); // Close popup
+    setIsProcessing(true); // Show processing screen
     setTimeout(() => {
-      setIsProcessing(false); // Show the main screen after processing
-    }, 10000); // Total processing time (10 seconds)
+      setIsProcessing(false); // Stop processing after 10 seconds
+      navigate("/nft"); // Redirect to NFT Marketplace
+    }, 10000);
   };
 
-  if (isProcessing) {
-    return <ProcessingScreen onComplete={() => setIsProcessing(false)} />;
-  }
+  // Close the popup
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
 
-  // Handler to show the popup
+  // Show the popup
   const handleShowPopup = () => {
     setShowPopup(true);
   };
 
-  // Handler to close the popup
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
   return (
     <div className="bg-[#1C1E2A] text-white min-h-screen p-4 font-anta">
       {/* Header */}
       <Header />
+
       {/* Main Content */}
       <main className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-8">
         {/* Left Section */}
@@ -101,13 +111,27 @@ export const NFTDashboard = () => {
               </div>
             </div>
 
+            {/* <div className="overflow-hidden">
+              <SliderWrapper ref={sliderRef} {...settings}>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <NFTCard title="The Future wave #23" creator="@spaceman" />
+                  <NFTCard title="Astro World #244" creator="@astrowave" />
+                  <NFTCard title="Cyber Art #234" creator="@cybermask" />
+                </div>
+              </SliderWrapper>
+              : (
+              <p>Loading Cards...</p>
+              )
+            </div> */}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <NFTCard title="The Future wave #23" creator="@spaceman" />
               <NFTCard title="Astro World #244" creator="@astrowave" />
               <NFTCard title="Cyber Art #234" creator="@cybermask" />
             </div>
+            {/* NFT Cards */}
           </div>
-
           {/* Recommended */}
           <div className="mt-6">
             <div className="flex justify-between items-center">
@@ -125,7 +149,7 @@ export const NFTDashboard = () => {
         </section>
 
         {/* Right Section */}
-        <section className="lg:col-span-5">
+        <section className="lg:col-span-5 bg-[#262C3A]">
           {/* Chart Summary */}
           <div className="bg-[#262C3A] rounded-lg p-4 mb-6">
             <h2 className="text-[20px] font-bold mb-4">Chart Summary</h2>
@@ -142,14 +166,13 @@ export const NFTDashboard = () => {
                 bgColor="bg-[#694797]"
                 bgImage={cardbg1}
                 onGoClick={handleShowPopup}
-                onClick={handleTaskCreation}
               />
               <QuickActionCard
                 title="NFT Marketplace"
                 emoji="💰"
                 bgColor="bg-[#0997FF]"
                 bgImage={cardbg2}
-                onGoClick={handleTaskCreation}
+                onGoClick={handleProcessing}
               />
               <QuickActionCard
                 title="Explore Insights"
@@ -160,7 +183,6 @@ export const NFTDashboard = () => {
               />
             </div>
           </div>
-
           {/* Trending Insights */}
           <div className="bg-[#262C3A] rounded-lg p-4">
             <h2 className="text-[20px] font-bold mb-4">Trending Insights</h2>
@@ -173,7 +195,16 @@ export const NFTDashboard = () => {
       </main>
 
       {/* Popup */}
-      {showPopup && <AIPromptPopup onClose={handleClosePopup} />}
+      {showPopup &&
+        <AIPromptPopup
+          onClose={handleClosePopup}
+          onSubmit={handleProcessing}
+        />}
+
+      {/* Processing Screen */}
+      {isProcessing && <ProcessingScreen />}
     </div>
   );
 };
+
+export default NFTDashboard;

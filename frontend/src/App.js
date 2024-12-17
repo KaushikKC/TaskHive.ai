@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar';
 import NFTMarketPlace from './pages/NFTMarketPlace';
 import OnchainIdentityPage from './pages/OnchainIdentityPage';
 import Details from './pages/Details';
+import ProcessingScreen from './components/ProcessingScreen';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
             <Route path="/nft" element={<NFTMarketPlace />} />
             <Route path="/identity" element={<OnchainIdentityPage />} />
             <Route path="/details" element={<Details />} />
-
+            <Route path="/processing" element={<ProcessingScreen />} />
           </Routes>
         </div>
       </div>
