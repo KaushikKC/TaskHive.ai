@@ -1,5 +1,7 @@
+
+
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import { NFTDashboard } from './pages/NFTDashboard';
 import { Navbar } from './components/Navbar';
@@ -10,26 +12,36 @@ import ProcessingScreen from './components/ProcessingScreen';
 import Home from './pages/Home';
 import OnchainIdentity from './pages/OnchainIdentity';
 
+const App = () => {
+  const location = useLocation(); // Get the current route
 
-function App() {
+  // Define routes where the Navbar should be hidden
+  const noNavbarRoutes = ['/', '/onchain'];
+
   return (
-    <Router>
-      <div className="flex w-screen min-h-screen bg-[#1C1E2A]">
-        {/* <Navbar /> */}
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<NFTDashboard />} />
-            <Route path="/nft" element={<NFTMarketPlace />} />
-            <Route path="/onchain" element={<OnchainIdentity />} />
-            <Route path="/identity" element={<OnchainIdentityPage />} />
-            <Route path="/details" element={<Details />} />
-            <Route path="/processing" element={<ProcessingScreen />} />
-          </Routes>
-        </div>
+    <div className="flex w-screen min-h-screen bg-[#1C1E2A]">
+      {/* Render Navbar only if the current route is not in the noNavbarRoutes list */}
+      {!noNavbarRoutes.includes(location.pathname) && <Navbar />}
+      
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<NFTDashboard />} />
+          <Route path="/nft" element={<NFTMarketPlace />} />
+          <Route path="/onchain" element={<OnchainIdentity />} />
+          <Route path="/identity" element={<OnchainIdentityPage />} />
+          <Route path="/details" element={<Details />} />
+          <Route path="/processing" element={<ProcessingScreen />} />
+        </Routes>
       </div>
-    </Router>
+    </div>
   );
-}
+};
 
-export default App;
+const AppWithRouter = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default AppWithRouter;

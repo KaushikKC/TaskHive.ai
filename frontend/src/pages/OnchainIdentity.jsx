@@ -2,6 +2,7 @@ import React from "react";
 import { SiSolana } from "react-icons/si";
 import bg from "../images/bg.png";
 import CursorGlow from "../components/CursorGlow";
+import { Link } from "react-router-dom";
 
 const OnchainIdentity = () => {
   return (
@@ -86,11 +87,11 @@ const OnchainIdentity = () => {
         </div>
 
         {/* Save Button */}
-        <div className="flex justify-center mt-6">
+        <Link to="/dashboard" className="flex justify-center mt-6">
           <button className="bg-white text-[#0997FF] hover:bg-[#0997FF] px-6 py-2 rounded-lg hover:text-white transition-all duration-300">
             Save
           </button>
-        </div>
+        </Link>
       </div>
     </div>
   );
