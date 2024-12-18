@@ -1,0 +1,9 @@
+[programs.devnet]
+nft_marketplace = "YOUR_PROGRAM_ID"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "/path/to/keypair.json"
