@@ -30,20 +30,16 @@ const QuickActionCard = ({ title, emoji, bgColor, bgImage, onGoClick }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}
-        className={`h-[120px] w-[200px] relative flex items-center justify-center rounded-lg text-white cursor-pointer ${bgColor}`}
+        className={`h-[160px] relative flex items-center justify-center rounded-lg text-white cursor-pointer ${bgColor}`}
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
-          backgroundPosition: "center"
+          backgroundPosition: "center",
         }}
       >
         <div className="flex flex-col items-center justify-center space-y-2 text-center">
-          <span className="text-4xl">
-            {emoji}
-          </span>
-          <h3 className="text-lg font-semibold">
-            {title}
-          </h3>
+          <span className="text-4xl">{emoji}</span>
+          <h3 className="text-lg font-semibold">{title}</h3>
         </div>
       </div>
 
@@ -52,10 +48,10 @@ const QuickActionCard = ({ title, emoji, bgColor, bgImage, onGoClick }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}
-        className={`h-[120px] w-[200px] relative p-4 rounded-lg text-white cursor-pointer ${bgColor}`}
+        className={`h-[160px] relative p-4 rounded-lg text-white cursor-pointer ${bgColor}`}
         style={{
           backgroundImage: `url(${bgImage})`,
-          backgroundSize: "cover"
+          backgroundSize: "cover",
         }}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-4">
@@ -63,7 +59,7 @@ const QuickActionCard = ({ title, emoji, bgColor, bgImage, onGoClick }) => {
           <p className="text-sm">Flips back automatically</p> */}
           <div className="mt-2">
             <button
-              onClick={e => {
+              onClick={(e) => {
                 e.stopPropagation();
                 onGoClick();
               }}
