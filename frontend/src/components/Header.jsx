@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import message from "../images/Notification.svg";
 import avatar from "../images/avatar.png";
 import { HiOutlineInformationCircle } from "react-icons/hi2";
-import OnchainIdentity from "./OnchainIdentity";
+import OnchainIdentity from "../pages/OnchainIdentity";
 import { Link } from "react-router-dom";
 
 function Header() {
