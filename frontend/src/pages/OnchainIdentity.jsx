@@ -1,7 +1,6 @@
 import React from "react";
 import { SiSolana } from "react-icons/si";
 import bg from "../images/bg.png";
-import CursorGlow from "../components/CursorGlow";
 import { Link } from "react-router-dom";
 
 const OnchainIdentity = () => {
@@ -20,9 +19,6 @@ const OnchainIdentity = () => {
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-50 z-0" />
-
-      {/* Floating 3D Models */}
-      <CursorGlow />
 
       {/* Content Box */}
       <div className="relative z-10 max-w-4xl mx-auto p-6 rounded-xl shadow-md my-8 bg-[#1C1E2A]">

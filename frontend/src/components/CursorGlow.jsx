@@ -14,7 +14,7 @@ const CursorGlow = () => {
 
   return (
     <div
-      className="pointer-events-none fixed top-0 left-0 w-32 h-32 bg-[#0997FF] opacity-90 blur-2xl rounded-full z-50"
+      className="pointer-events-none fixed top-0 left-0 w-32 h-32 bg-[#0997FF] opacity-90 blur-3xl rounded-full z-50"
       style={{
         transform: `translate(${position.x - 64}px, ${position.y - 64}px)`,
         transition: "transform 0.1s ease-out"

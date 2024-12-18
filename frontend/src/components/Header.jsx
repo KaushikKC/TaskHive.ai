@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import message from "../images/Notification.svg";
 import avatar from "../images/avatar.png";
-import { HiOutlineInformationCircle } from "react-icons/hi2";
 import OnchainIdentity from "../pages/OnchainIdentity";
 import { Link } from "react-router-dom";
+import NotificationPanel from "./NotificationPanel";
 
 function Header() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [isNotificationPanel, setIsNotificationPanel] = useState(false);
+  // Close the popup
+  const handleClosePopup = () => {
+    setIsNotificationPanel(false);
+  };
 
+  // Show the popup
+  const handleShowPopup = () => {
+    setIsNotificationPanel(true);
+  };
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
   };
@@ -19,14 +28,13 @@ function Header() {
           <h1 className="text-[24px] md:text-[32px] font-bold font-tektur mb-4 md:mb-0">
             Hi, Madhu!
           </h1>
-          <HiOutlineInformationCircle
-            onClick={togglePopup}
-            className="w-8 h-8 cursor-pointer"
-          />
         </div>
 
         <div className="flex items-center space-x-4">
-          <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center cursor-pointer hover:bg-[#0997FF]">
+          <div
+            onClick={handleShowPopup}
+            className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center cursor-pointer hover:bg-[#0997FF]"
+          >
             <img src={message} alt="" className="w-6 h-6" />
           </div>
           <Link to="/identity">
@@ -46,6 +54,7 @@ function Header() {
 
       {/* Conditionally render the popup */}
       {isPopupVisible && <OnchainIdentity onClose={togglePopup} />}
+      {isNotificationPanel && <NotificationPanel onClose={handleClosePopup} />}
     </div>
   );
 }

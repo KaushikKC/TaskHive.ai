@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import FloatingElements from "../components/FloatingElements";
-import CursorGlow from "../components/CursorGlow";
 import bg from "../images/bg.png";
 import { Link } from "react-router-dom";
 
@@ -19,9 +18,6 @@ const Home = () => {
       <div className="absolute inset-0 bg-black opacity-50 z-0" />
       {/* Or, if you prefer a blur: */}
       {/* <div className="absolute inset-0 bg-black z-0" style={{ filter: "blur(8px)" }} /> */}
-
-      {/* Floating 3D Models */}
-      <CursorGlow />
 
       {/* Content Section */}
       <motion.div
@@ -46,8 +42,8 @@ const Home = () => {
             }}
             transition={{
               repeat: Infinity,
-              duration: 2,
-              ease: "easeInOut"
+              duration: 5,
+              ease: ["easeIn", "easeOut"]
             }}
           >
             AI-Powered Onchain Identity and Shared Graph

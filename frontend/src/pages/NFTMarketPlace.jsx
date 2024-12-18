@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import { CiSearch } from "react-icons/ci";
 import popular from "../images/popular.png";
@@ -8,22 +8,42 @@ import photo from "../images/photo.png";
 import music from "../images/music.png";
 import sport from "../images/sport.png";
 import NFTCard from "../components/NFTCard";
+import ListNFT from "../components/ListNFT";
 function NFTMarketPlace() {
+  const [showPopup, setShowPopup] = useState(false); // Popup visibility
+
+  // Close the popup
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
+  // Show the popup
+  const handleShowPopup = () => {
+    setShowPopup(true);
+  };
   return (
     <div className="bg-[#1C1E2A] text-white min-h-screen p-4 font-anta">
       {/* Header */}
       <Header />
-      <div className="flex flex-col md:flex-row items-center bg-[#262C3A] rounded-lg p-4 my-8 w-[800px]">
-        <div className="flex items-center space-x-4 flex-grow mb-4 md:mb-0">
-          <CiSearch className="w-6 h-6" />
-          <input
-            type="text"
-            placeholder="Search items, collection, accounts"
-            className="flex-grow bg-transparent outline-none text-white placeholder-[#A3B2C8]"
-          />
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row items-center bg-[#262C3A] rounded-lg p-4 my-8 w-[800px]">
+          <div className="flex items-center space-x-4 flex-grow mb-4 md:mb-0">
+            <CiSearch className="w-6 h-6" />
+            <input
+              type="text"
+              placeholder="Search items, collection, accounts"
+              className="flex-grow bg-transparent outline-none text-white placeholder-[#A3B2C8]"
+            />
+          </div>
+          <button className="bg-white text-[#0997FF] hover:bg-[#0997FF] px-4 py-2 rounded-lg hover:text-white ">
+            Search
+          </button>
         </div>
-        <button className="bg-white text-[#0997FF] hover:bg-[#0997FF] px-4 py-2 rounded-lg hover:text-white">
-          Search
+        <button
+          onClick={handleShowPopup}
+          className="bg-white text-[#0997FF] hover:bg-[#0997FF] px-4 py-2 rounded-lg hover:text-white h-fit mr-10"
+        >
+          List your NFT
         </button>
       </div>
       <div>
@@ -64,6 +84,7 @@ function NFTMarketPlace() {
           <NFTCard title="Cyber Art #234" creator="@cybermask" />
         </div>
       </div>
+      {showPopup && <ListNFT onClose={handleClosePopup} />}
     </div>
   );
 }

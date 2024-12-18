@@ -16,7 +16,6 @@ import AIPromptPopup from "../components/AIPromptPopup";
 import Header from "../components/Header";
 import ProcessingScreen from "../components/ProcessingScreen";
 import { useNavigate } from "react-router-dom";
-// import SliderWrapper from "../utils/SliderWrapper";
 
 export const NFTDashboard = () => {
   const [showPopup, setShowPopup] = useState(false); // Popup visibility

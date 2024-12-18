@@ -11,6 +11,7 @@ import Details from './pages/Details';
 import ProcessingScreen from './components/ProcessingScreen';
 import Home from './pages/Home';
 import OnchainIdentity from './pages/OnchainIdentity';
+import CursorGlow from './components/CursorGlow';
 
 const App = () => {
   const location = useLocation(); // Get the current route
@@ -24,6 +25,7 @@ const App = () => {
       {!noNavbarRoutes.includes(location.pathname) && <Navbar />}
       
       <div className="flex-grow">
+        <CursorGlow />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<NFTDashboard />} />
