@@ -68,6 +68,7 @@ const OnchainIdentity = () => {
 
       const response = await api.createUser({
         walletAddress: publicKey.toString(),
+        nickname: formData.nickname,
         preferences: {
           maxBudget: Number(formData.maxBudget),
           minRarity: Number(formData.minRarity),
@@ -81,6 +82,7 @@ const OnchainIdentity = () => {
       });
 
       if (response) {
+        localStorage.setItem("userNickname", formData.nickname);
         toast.success("Profile created successfully!");
         navigate("/dashboard");
       }

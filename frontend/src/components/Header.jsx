@@ -13,9 +13,18 @@ function Header() {
   const [isNotificationPanel, setIsNotificationPanel] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
   const [balance, setBalance] = useState(0);
+  const [nickname, setNickname] = useState("");
   const { publicKey, connected, connect, wallets, select, disconnect } =
     useWallet();
   const { connection } = useConnection();
+
+  useEffect(() => {
+    // Get nickname from localStorage
+    const savedNickname = localStorage.getItem("userNickname");
+    if (savedNickname) {
+      setNickname(savedNickname);
+    }
+  }, []);
 
   useEffect(() => {
     if (publicKey) {
@@ -63,7 +72,7 @@ function Header() {
       <header className="flex flex-col md:flex-row justify-between items-center pt-4 px-6">
         <div className="flex items-center gap-3">
           <h1 className="text-[24px] md:text-[32px] font-bold font-tektur mb-4 md:mb-0">
-            Hi, Madhu!
+            Hi, {nickname}!
           </h1>
         </div>
 
