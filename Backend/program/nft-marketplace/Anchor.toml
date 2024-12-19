@@ -1,0 +1,17 @@
+# In nft-marketplace/program/nft-marketplace/Anchor.toml
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+nft_marketplace = "5b6jKWTrt2E2LkLjDj9E1onbcstLfmKrjNvLZJ1jaaK5"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

@@ -1,25 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FloatingElements from "../components/FloatingElements";
 import bg from "../images/bg.png";
 import { Link } from "react-router-dom";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 
 const Home = () => {
+  const { publicKey, connected, connect, wallets, select, disconnect } =
+    useWallet();
+  const [walletAddress, setWalletAddress] = useState("");
+
+  const handleConnect = async () => {
+    if (wallets.length > 0) {
+      await select(wallets[0].adapter.name);
+    }
+  };
+
+  useEffect(() => {
+    if (publicKey) {
+      const address = publicKey.toString();
+      setWalletAddress(`${address.slice(0, 6)}...${address.slice(-4)}`);
+    }
+  }, [publicKey]);
+
   return (
     <div
       className="relative font-tektur w-full h-screen bg-transparent text-white overflow-hidden"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
       }}
     >
       {/* Dark or Blur Overlay */}
       <div className="absolute inset-0 bg-black opacity-50 z-0" />
-      {/* Or, if you prefer a blur: */}
-      {/* <div className="absolute inset-0 bg-black z-0" style={{ filter: "blur(8px)" }} /> */}
-
-      {/* Content Section */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,18 +52,17 @@ const Home = () => {
             className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500"
             animate={{
               opacity: [0, 1, 0.8, 1],
-              x: [0, -20, 0, 20]
+              x: [0, -20, 0, 20],
             }}
             transition={{
               repeat: Infinity,
               duration: 5,
-              ease: ["easeIn", "easeOut"]
+              ease: ["easeIn", "easeOut"],
             }}
           >
             AI-Powered Onchain Identity and Shared Graph
           </motion.span>
         </motion.h1>
-
         {/* Subtext with Animation */}
         <motion.p
           initial={{ opacity: 0 }}
@@ -59,7 +72,6 @@ const Home = () => {
         >
           Autonomous Execution Powered by AI and Onchain Trust{" "}
         </motion.p>
-
         {/* Buttons with Hover and Click Animations */}
         <motion.div
           whileHover={{ scale: 1.1 }}
@@ -74,18 +86,24 @@ const Home = () => {
               Get Started
             </motion.button>
           </Link>
-
           <motion.button
+            onClick={connected ? disconnect : handleConnect}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 text-white font-semibold rounded-full bg-transparent border-2 border-[#0997FF] relative overflow-hidden transform transition-all duration-300 hover:border-[#0997FF] hover:text-white hover:scale-105"
           >
             <span className="absolute inset-0 bg-gradient-to-l from-purple-500 to-blue-500 opacity-50" />
-            Connect Wallet
+            <div className="flex items-center gap-2">
+              <div
+                className={`w-2 h-2 rounded-full ${
+                  connected ? "bg-green-400" : "bg-red-400"
+                }`}
+              />
+              {connected ? walletAddress : "Connect Wallet"}
+            </div>
           </motion.button>
         </motion.div>
       </motion.div>
-
-      {/* Floating Elements */}
+      ;{/* Floating Elements */}
       <FloatingElements />
     </div>
   );

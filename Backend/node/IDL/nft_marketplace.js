@@ -1,6 +1,6 @@
 // backend/src/idl/nft_marketplace.ts
 
-export const IDL = {
+const IDL = {
   version: "0.1.0",
   name: "nft_marketplace",
   instructions: [
@@ -206,3 +206,5 @@ export const IDL = {
     },
   ],
 };
+
+module.exports = { IDL };

@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const NFT = require("../models/NFT");
-const { web3 } = require("../utils/solana");
+// const { web3 } = require("../utils/solana");
 
 // List NFT
 router.post("/list", async (req, res) => {

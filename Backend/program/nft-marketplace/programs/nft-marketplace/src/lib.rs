@@ -2,7 +2,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Token, TokenAccount};
 
-declare_id!("Bju9PZShAqcJzBMn6UJppQPp9YvAwkfiYaapiv467tBk");
+declare_id!("5b6jKWTrt2E2LkLjDj9E1onbcstLfmKrjNvLZJ1jaaK5");
 
 #[program]
 pub mod nft_marketplace {

@@ -1,7 +1,7 @@
 // src/utils/contract.ts
 import { Connection, PublicKey, Transaction } from "@solana/web3.js";
 import { Program, Provider, web3 } from "@project-serum/anchor";
-import { IDL } from "../idl/nft_marketplace";
+import { IDL } from "../IDL/nft_marketplace";
 
 export class ContractService {
   private program: Program;

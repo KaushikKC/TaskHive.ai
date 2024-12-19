@@ -5,23 +5,34 @@
   "dependencies": {
     "@react-three/drei": "^9.120.4",
     "@react-three/fiber": "^8.17.10",
+    "@solana/wallet-adapter-react": "^0.15.35",
+    "@solana/wallet-adapter-react-ui": "^0.9.35",
+    "@solana/wallet-adapter-wallets": "^0.19.32",
+    "@solana/web3.js": "^1.98.0",
+    "chart.js": "^4.4.7",
     "cra-template": "1.2.0",
+    "crypto": "^1.0.1",
     "framer-motion": "^11.15.0",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
     "react": "^19.0.0",
     "react-card-flip": "^1.2.3",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^5.4.0",
     "react-router-dom": "^7.0.2",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
-    "tailwindcss": "^3.4.16"
+    "stream": "^0.0.3",
+    "tailwindcss": "^3.4.16",
+    "url": "^0.11.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,5 +52,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.1",
+    "https-browserify": "^1.0.0",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-http": "^3.2.0"
   }
 }
