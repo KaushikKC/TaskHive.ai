@@ -71,39 +71,71 @@ function ListNFT({ onClose }) {
     try {
       setIsLoading(true);
 
-      // Upload image to IPFS
+      // 1. Upload image to IPFS
       const imageUrl = await uploadToIPFS(formData.image);
 
-      // Create metadata
+      // 2. Create and upload metadata to IPFS
       const metadata = {
         name: formData.name,
         description: formData.description,
         image: imageUrl,
+        symbol: "NFT", // Add symbol for minting
         attributes: [],
+        properties: {
+          files: [{ uri: imageUrl, type: "image/jpeg" }],
+          category: "image",
+          creators: [
+            {
+              address: publicKey.toString(),
+              share: 100,
+            },
+          ],
+        },
       };
 
-      // Upload metadata to IPFS
       const metadataBlob = new Blob([JSON.stringify(metadata)], {
         type: "application/json",
       });
       const metadataUri = await uploadToIPFS(metadataBlob);
 
-      // Create NFT listing
-      const response = await axios.post("/api/nft/list", {
-        metadataUri,
-        name: formData.name,
-        description: formData.description,
-        price: parseFloat(formData.price),
-        seller: publicKey.toString(),
-      });
+      // 3. Mint NFT
+      const mintResponse = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/nft/mint`,
+        {
+          name: formData.name,
+          symbol: "NFT",
+          uri: metadataUri,
+          payer: publicKey.toString(),
+        }
+      );
 
-      if (response.status === 201) {
-        toast.success("NFT listed successfully!");
+      if (!mintResponse.data.mint) {
+        throw new Error("Failed to mint NFT");
+      }
+
+      // 4. List NFT for sale
+      const listResponse = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/nft/list`,
+        {
+          price: parseFloat(formData.price),
+          metadataUri,
+          nftMint: mintResponse.data.mint,
+          seller: publicKey.toString(),
+        }
+      );
+
+      if (listResponse.data) {
+        toast.success("NFT minted and listed successfully!");
+        console.log("Mint signature:", mintResponse.data.signature);
+        console.log("List signature:", listResponse.data.signature);
+        console.log("Listing address:", listResponse.data.listingAddress);
         onClose();
       }
     } catch (error) {
-      console.error("Error listing NFT:", error);
-      toast.error("Failed to list NFT. Please try again.");
+      console.error("Error creating and listing NFT:", error);
+      toast.error(
+        error.response?.data?.error || "Failed to create and list NFT"
+      );
     } finally {
       setIsLoading(false);
     }

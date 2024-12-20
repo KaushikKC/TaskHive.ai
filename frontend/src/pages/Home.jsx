@@ -4,6 +4,7 @@ import FloatingElements from "../components/FloatingElements";
 import bg from "../images/bg.png";
 import { Link } from "react-router-dom";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const { publicKey, connected, connect, wallets, select, disconnect } =
@@ -13,6 +14,39 @@ const Home = () => {
   const handleConnect = async () => {
     if (wallets.length > 0) {
       await select(wallets[0].adapter.name);
+    }
+  };
+
+  const checkUserExists = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/${publicKey.toString()}`
+      );
+      return response.data;
+    } catch (error) {
+      if (error.response?.status !== 404) {
+        console.error("Error checking user:", error);
+      }
+      return null;
+    }
+  };
+
+  const handleGetStarted = async () => {
+    if (!connected) {
+      toast.error("Please connect your wallet first!");
+      return;
+    }
+
+    try {
+      const user = await checkUserExists();
+      if (user) {
+        navigate("/dashboard");
+      } else {
+        navigate("/onchain");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
@@ -77,15 +111,15 @@ const Home = () => {
           whileHover={{ scale: 1.1 }}
           className="mt-8 flex gap-6 font-anta flex-wrap justify-center"
         >
-          <Link to="/onchain">
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 text-white font-semibold rounded-full bg-transparent border-2 border-[#0997FF] relative overflow-hidden transform transition-all duration-300 hover:scale-105"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-purple-500 to-[#0997FF] opacity-50" />
-              Get Started
-            </motion.button>
-          </Link>
+          <motion.button
+            onClick={handleGetStarted}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-4 text-white font-semibold rounded-full bg-transparent border-2 border-[#0997FF] relative overflow-hidden transform transition-all duration-300 hover:scale-105"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-purple-500 to-[#0997FF] opacity-50" />
+            Get Started
+          </motion.button>
+
           <motion.button
             onClick={connected ? disconnect : handleConnect}
             whileTap={{ scale: 0.95 }}

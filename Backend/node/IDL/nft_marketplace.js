@@ -7,125 +7,59 @@ const IDL = {
     {
       name: "initializeMarketplace",
       accounts: [
-        {
-          name: "marketplace",
-          isMut: true,
-          isSigner: false,
-        },
-        {
-          name: "authority",
-          isMut: true,
-          isSigner: true,
-        },
-        {
-          name: "systemProgram",
-          isMut: false,
-          isSigner: false,
-        },
+        { name: "marketplace", isMut: true, isSigner: false },
+        { name: "authority", isMut: true, isSigner: true },
+        { name: "systemProgram", isMut: false, isSigner: false },
       ],
       args: [],
     },
     {
-      name: "listNft",
+      name: "mintNft",
       accounts: [
-        {
-          name: "marketplace",
-          isMut: true,
-          isSigner: false,
-        },
-        {
-          name: "listing",
-          isMut: true,
-          isSigner: true,
-        },
-        {
-          name: "nftMint",
-          isMut: false,
-          isSigner: false,
-        },
-        {
-          name: "seller",
-          isMut: true,
-          isSigner: true,
-        },
-        {
-          name: "systemProgram",
-          isMut: false,
-          isSigner: false,
-        },
+        { name: "payer", isMut: true, isSigner: true },
+        { name: "mint", isMut: true, isSigner: true },
+        { name: "tokenAccount", isMut: true, isSigner: false },
+        { name: "metadata", isMut: true, isSigner: false },
+        { name: "tokenProgram", isMut: false, isSigner: false },
+        { name: "associatedTokenProgram", isMut: false, isSigner: false },
+        { name: "tokenMetadataProgram", isMut: false, isSigner: false },
+        { name: "systemProgram", isMut: false, isSigner: false },
+        { name: "rent", isMut: false, isSigner: false },
       ],
       args: [
-        {
-          name: "metadataUri",
-          type: "string",
-        },
-        {
-          name: "price",
-          type: "u64",
-        },
+        { name: "name", type: "string" },
+        { name: "symbol", type: "string" },
+        { name: "uri", type: "string" },
+      ],
+    },
+    {
+      name: "listNft",
+      accounts: [
+        { name: "marketplace", isMut: true, isSigner: false },
+        { name: "listing", isMut: true, isSigner: false },
+        { name: "nftMint", isMut: false, isSigner: false },
+        { name: "seller", isMut: true, isSigner: true },
+        { name: "userIdentity", isMut: true, isSigner: false },
+        { name: "systemProgram", isMut: false, isSigner: false },
+      ],
+      args: [
+        { name: "price", type: "u64" },
+        { name: "metadataUri", type: "string" },
       ],
     },
     {
       name: "purchaseNft",
       accounts: [
-        {
-          name: "listing",
-          isMut: true,
-          isSigner: false,
-        },
-        {
-          name: "buyer",
-          isMut: true,
-          isSigner: true,
-        },
-        {
-          name: "seller",
-          isMut: true,
-          isSigner: false,
-        },
-        {
-          name: "sellerTokenAccount",
-          isMut: true,
-          isSigner: false,
-        },
-        {
-          name: "buyerTokenAccount",
-          isMut: true,
-          isSigner: false,
-        },
-        {
-          name: "tokenProgram",
-          isMut: false,
-          isSigner: false,
-        },
-        {
-          name: "systemProgram",
-          isMut: false,
-          isSigner: false,
-        },
+        { name: "listing", isMut: true, isSigner: false },
+        { name: "buyer", isMut: true, isSigner: true },
+        { name: "seller", isMut: true, isSigner: false },
+        { name: "sellerTokenAccount", isMut: true, isSigner: false },
+        { name: "buyerTokenAccount", isMut: true, isSigner: false },
+        { name: "userIdentity", isMut: true, isSigner: false },
+        { name: "tokenProgram", isMut: false, isSigner: false },
+        { name: "systemProgram", isMut: false, isSigner: false },
       ],
       args: [],
-    },
-    {
-      name: "updateUserIdentity",
-      accounts: [
-        {
-          name: "userIdentity",
-          isMut: true,
-          isSigner: false,
-        },
-        {
-          name: "user",
-          isMut: false,
-          isSigner: true,
-        },
-      ],
-      args: [
-        {
-          name: "action",
-          type: "string",
-        },
-      ],
     },
   ],
   accounts: [
@@ -134,14 +68,8 @@ const IDL = {
       type: {
         kind: "struct",
         fields: [
-          {
-            name: "authority",
-            type: "publicKey",
-          },
-          {
-            name: "totalListings",
-            type: "u64",
-          },
+          { name: "authority", type: "publicKey" },
+          { name: "totalListings", type: "u64" },
         ],
       },
     },
@@ -150,26 +78,11 @@ const IDL = {
       type: {
         kind: "struct",
         fields: [
-          {
-            name: "seller",
-            type: "publicKey",
-          },
-          {
-            name: "nftMint",
-            type: "publicKey",
-          },
-          {
-            name: "price",
-            type: "u64",
-          },
-          {
-            name: "metadataUri",
-            type: "string",
-          },
-          {
-            name: "isActive",
-            type: "bool",
-          },
+          { name: "seller", type: "publicKey" },
+          { name: "nftMint", type: "publicKey" },
+          { name: "price", type: "u64" },
+          { name: "metadataUri", type: "string" },
+          { name: "isActive", type: "bool" },
         ],
       },
     },
@@ -178,32 +91,23 @@ const IDL = {
       type: {
         kind: "struct",
         fields: [
-          {
-            name: "user",
-            type: "publicKey",
-          },
-          {
-            name: "reputationScore",
-            type: "u64",
-          },
-          {
-            name: "totalPurchases",
-            type: "u64",
-          },
-          {
-            name: "totalListings",
-            type: "u64",
-          },
+          { name: "user", type: "publicKey" },
+          { name: "reputationScore", type: "u64" },
+          { name: "totalPurchases", type: "u64" },
+          { name: "totalListings", type: "u64" },
         ],
       },
     },
   ],
   errors: [
+    { code: 6000, name: "ListingNotActive", msg: "Listing is not active" },
+    { code: 6001, name: "InvalidPrice", msg: "Invalid listing price" },
     {
-      code: 6000,
-      name: "ListingNotActive",
-      msg: "Listing is not active",
+      code: 6002,
+      name: "InsufficientFunds",
+      msg: "Insufficient funds for purchase",
     },
+    { code: 6003, name: "Overflow", msg: "Arithmetic overflow" },
   ],
 };
 
